@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Admission Sucsessfull{% endblock %}
+
+{% block content %}
+<div align="center">   
+
+{% if std.photo %}
+    <img src="{{ std.photo.url }}" height="182.4" width="144">
+    {% else %}
+    Photo not found
+{% endif %}
+ </div>
+
+ <div>
+<p style="color:white"><h2 class="title">Congratulations {{std.first_name}} you are admitted to {{ std.department }} </h2></p>
+<br><br>
+  <form action="{% url 'pdf' %}" METHOD="GET">
+        {% csrf_token %} 
+        <div class="p-t-20">
+        <button class="btn btn--radius btn--green" type="submit">Download Student Form</button>
+        </div>
+        </form>
+<br><br>
+
+    <nav class="site-navigation position-relative text-center" role="navigation">
+       <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+       <li class="cta"><a href="{% url 'addstudent' %}" class="nav-link"><span>Add New Student</span></a></li>
+       </ul>
+       </nav>
+       <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+         
+        </div>
+     
+
+
+
+{% endblock%}

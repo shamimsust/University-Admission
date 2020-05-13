@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% block title %}Choose Department{% endblock %}
+
+                    <h2 class="title">Hi! {{ std.first_name}} Choose Department</h2>
+<div>
+<p style="color:white">
+<table class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>Department Name</th>  
+        <th>Seat left</th>  
+        <th>Enrole</th>         
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for dept in deptlist %}  
+
+    <tr>  
+        <td>{{ dept.department_name }}</td>  
+        <td>{{ dept.seat }}</td>  
+        <td>
+        <form action="{% url 'deptadd' std.email dept.department_name %}" METHOD="POST">
+        {% csrf_token %} 
+        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Enrole</button>
+                        </div>
+        </form>
+        </td>  
+       
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table> </p>  </div>
+{% endblock %}
